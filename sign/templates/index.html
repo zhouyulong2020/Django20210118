@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Page</title>
+</head>
+<body>
+<h1>发布会管理</h1>
+<!--
+将表单中的数据提交给服务器有两种方式POST/GET
+服务器如何接收数据并加以处理呢？可以通过form表单中的action属性来指定提交的路径。
+-->
+<form method="post" action="/login_action/">
+    <input name = "username" type = "text" placeholder="username"><br>
+    <input name = "password" type = "password" placeholder="password"><br>
+    <!-- 对render返回字典KEY值进行显示-->
+    {{ error }}<br>
+    <button id="btn" type="submit">登录</button>
+    <!--
+    Django 针对CSRF的保护措施是在生成的表单中放置一个自动生成的令牌，通过这个令牌判断POST请求是否来自同一个网站。
+    当页面向Django服务器发送一个POST请求时，服务器端要求客户加上csrfmiddlewaretoken字段，该字段的值为当前会话ID加上一个密钥的散列值。
+    如果想忽略掉CSRF检查，可以在settings.py文件中注释掉csrf: django.middleware.csrf.CsrfViewmiddleware
+     -->
+    {% csrf_token %}
+</form>
+</body>
+</html>

@@ -1,0 +1,3 @@
+#让当前的Django通过pymysql连接mysql数据库
+import pymysql
+pymysql.install_as_MySQLdb()
